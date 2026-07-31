@@ -6,6 +6,7 @@ const orderRouter = require("./routes/orderRoute");
 const paymentRouter = require("./routes/paymentRoute");
 const productRouter = require("./routes/productRoute");
 const userRouter = require("./routes/userRoute");
+const ledgerRouter = require("./routes/ledgerRoute");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/api/order', orderRouter);
 app.use('/api/payment', paymentRouter);
 app.use('/api/product', productRouter);
 app.use('/api/user', userRouter);
+app.use('/api/ledger', ledgerRouter);
 
 // deployment
 __dirname = path.resolve();
@@ -30,5 +32,12 @@ if (process.env.NODE_ENV === "production") {
     res.send("Server is Running! 🚀");
   });
 }
+
+app.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).json({
+    success: false,
+    message: err.message,
+  });
+});
 
 module.exports = app;
