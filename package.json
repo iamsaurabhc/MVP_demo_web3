@@ -50,6 +50,7 @@
     "start": "concurrently \"node server/server.js\" \"react-app-rewired start\"",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
+    "test:ledger": "node --test --test-reporter=spec server/services/tokenLedger.test.js server/routes/ledgerRoute.test.js",
     "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
@@ -79,6 +80,7 @@
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
+    "supertest": "^7.2.2",
     "url": "^0.11.0"
   }
 }
